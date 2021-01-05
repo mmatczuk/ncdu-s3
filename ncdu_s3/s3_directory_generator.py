@@ -1,11 +1,11 @@
 from __future__ import absolute_import
 
-import urlparse
+from urlparse import urlparse
 import boto3
 
 class S3DirectoryGenerator(object):
     def __init__(self, s3_url):
-        parsed_s3_url = urlparse.urlparse(s3_url)
+        parsed_s3_url = urlparse(s3_url)
         if parsed_s3_url.scheme != 's3':
             raise SyntaxError('Invalid S3 scheme')
 
@@ -43,4 +43,4 @@ class S3DirectoryGenerator(object):
                 # we assume the S3 prefix is a directory that wasn't terminated with a '/'
                 path.pop(0)
 
-            yield (path, o.size)
+            yield (path, o.size, o.last_modified)

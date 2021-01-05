@@ -21,8 +21,8 @@ def main(ctx, s3_url, output):
     with NcduDataWriter(output, s3_url) as ncdu:
         walker = DirectoryWalker(ncdu)
 
-        for path, size in s3_directory_generator:
-            walker.process_item(path, size)
+        for path, size, last_modified in s3_directory_generator:
+            walker.process_item(path, size, last_modified)
 
 if __name__ == '__main__':
     main()

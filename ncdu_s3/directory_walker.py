@@ -12,7 +12,7 @@ class DirectoryWalker(object):
         self.writer = writer
         self.current_path = []
 
-    def process_item(self, path, size):
+    def process_item(self, path, size, last_modified):
         key_filename = path.pop()
 
         if self.current_path != path:
@@ -41,4 +41,4 @@ class DirectoryWalker(object):
         # directory entry ends with a '/' so the key_filename will be ''.
         # in that case, omit it
         if key_filename != '':
-            self.writer.file_entry(key_filename, size)
+            self.writer.file_entry(key_filename, size, last_modified)

@@ -51,15 +51,17 @@ class NcduDataWriter(object):
             self.depth -= 1
             self.output.write(']')
 
-    def file_entry(self, name, size):
+    def file_entry(self, name, size, last_modified):
         """
         :type name: str
         :type size: int
+        :type last_modified: datetime
         """
 
         self.output.write(",\n")
 
-        json.dump({'name': name, 'dsize': size}, self.output)
+        unixtime = int(time.mktime(last_modified.timetuple()))
+        json.dump({'name': name, 'dsize': size, 'mtime': unixtime}, self.output)
 
     def close(self):
         for i in xrange(self.depth):
