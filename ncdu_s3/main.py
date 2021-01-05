@@ -1,7 +1,5 @@
 from __future__ import absolute_import
 import click
-import itertools
-import urlparse
 from ncdu_s3 import NcduDataWriter, DirectoryWalker, S3DirectoryGenerator
 
 
