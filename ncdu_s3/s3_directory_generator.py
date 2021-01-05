@@ -1,11 +1,9 @@
-from __future__ import absolute_import
-
-import urlparse
+from urllib.parse import urlparse
 import boto3
 
 class S3DirectoryGenerator(object):
     def __init__(self, s3_url):
-        parsed_s3_url = urlparse.urlparse(s3_url)
+        parsed_s3_url = urlparse(s3_url)
         if parsed_s3_url.scheme != 's3':
             raise SyntaxError('Invalid S3 scheme')
 

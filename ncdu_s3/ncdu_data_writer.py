@@ -1,5 +1,3 @@
-from __future__ import absolute_import
-
 import time
 import ujson as json
 
@@ -62,7 +60,7 @@ class NcduDataWriter(object):
         json.dump({'name': name, 'dsize': size}, self.output)
 
     def close(self):
-        for i in xrange(self.depth):
+        for i in range(self.depth):
             self.dir_leave()
 
         # close the format JSON document we opened in our constructor
